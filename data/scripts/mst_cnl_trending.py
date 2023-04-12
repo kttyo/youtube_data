@@ -3,8 +3,11 @@ import googleapiclient.discovery
 import MySQLdb
 import datetime
 import time
+import logging
 import credentials
 
+
+logging.basicConfig(level=logging.INFO,format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
 
 # Disable OAuthlib's HTTPS verification when running locally.
 # *DO NOT* leave this option enabled in production.
@@ -109,11 +112,14 @@ def main():
 
     channel_id_list = list(trending_channels - existing_channels)
 
-    print(channel_id_list)
     # get channel attributes from youtube data API.
-    channel_attr_list = get_channel_attr_list(channel_id_list)
-    # insert channel attributes on the day to database.
-    insert_mysql(channel_attr_list)
+    if len(channel_id_list) > 0:
+        logging.info(f'{len(channel_id_list)} new channel id(s) were discovered.')
+        channel_attr_list = get_channel_attr_list(channel_id_list)
+        # insert channel attributes on the day to database.
+        insert_mysql(channel_attr_list)
+    else:
+        logging.info('No new channel id was discovered added.')
 
 
 if __name__ == '__main__':
