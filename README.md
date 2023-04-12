@@ -29,6 +29,6 @@ The `data/` directory contains the scripts for the project. It is organized into
 ## Web Interface to display data captured and aggregated for analysis
 - Visual representation of the data is also available on the web, at [https://buzzing.jppj.jp/](https://buzzing.jppj.jp/)
 - However, this part is separately in another private repository for security reasons at the moment. 
-![web ui](https://github.com/kttyo/youtube_data/blob/e6127ec06e245ea80c4844cb03152e3cd083daec/images/buzzing_data_flow.jpg)
+![web ui](https://github.com/kttyo/youtube_data/blob/a6b850c1d85db7841c8aa23554f17841a4ae2159/images/buzzing_chart.jpg)
 ### Tools Used
 - Django, Django REST Framework, Nginx, Gunicorn, Javascript
