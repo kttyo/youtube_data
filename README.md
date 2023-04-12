@@ -6,7 +6,7 @@ This repository contains code for extracting data from the YouTube Data API, pro
 
 ---
 ## Data pipeline from YouTube API to MySQL tables
-![data process](https://github.com/kttyo/buzzing/blob/d7644ccd0adbaee2ada61a30cd1feef2725770ec/static/Buzzing%20in%20Japan.jpeg)
+![data process](https://github.com/kttyo/youtube_data/blob/5d56108b7c10d1badb9e0c8d3c49a05ebb406c74/images/buzzing_data_flow.jpg)
 ### Tools Used
 - Python, MySQL, YouTube Data API, CaboCha
 
@@ -24,6 +24,6 @@ The `data/` directory contains the scripts for the project. It is organized into
 ## Web Interface to display data captured and aggregated for analysis
 - Visual representation of the data is also available on the web, at [https://buzzing.jppj.jp/](https://buzzing.jppj.jp/)
 - However, this part is separately in another private repository for security reasons at the moment. 
-![web ui](https://github.com/kttyo/buzzing/blob/eacc9479d84979390e176ce9ee05f17f04208e0c/static/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202023-04-12%2017.37.11.jpg)
+![web ui](https://github.com/kttyo/youtube_data/blob/a6b850c1d85db7841c8aa23554f17841a4ae2159/images/buzzing_chart.jpg)
 ### Tools Used
 - Django, Django REST Framework, Nginx, Gunicorn, Javascript
