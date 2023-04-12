@@ -119,7 +119,7 @@ def main():
         # insert channel attributes on the day to database.
         insert_mysql(channel_attr_list)
     else:
-        logging.info('No new channel id was discovered added.')
+        logging.info('No new channel id was discovered.')
 
 
 if __name__ == '__main__':
