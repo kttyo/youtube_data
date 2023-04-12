@@ -1,4 +1,4 @@
-# YouTube Data Processing
+# YouTube Data Pipeline
 This repository contains code for extracting data from the YouTube Data API, processing it, and storing it in a database. The code is designed to help users work with YouTube data in a more efficient and organized way. With this code, you can easily capture and store data from YouTube, and then use it for further analysis or other purposes.
 
 ## Assumptions
