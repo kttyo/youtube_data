@@ -16,6 +16,10 @@ youtube = googleapiclient.discovery.build(
     api_service_name, api_version, developerKey = credentials.GOOGLE_DEVELOPER_KEY)
 
 
+conn = MySQLdb.connect(host=credentials.DB_HOST, db=credentials.DATABASE,user=credentials.DB_USER,passwd=credentials.DB_PASSWORD,charset='utf8mb4')
+c = conn.cursor()
+
+
 def get_channel_id_list():
     request = youtube.videos().list(
         part='snippet', # 取得したい情報の指定
@@ -29,7 +33,18 @@ def get_channel_id_list():
     for video_item in response['items']:
         channel_id_set.add(video_item['snippet']['channelId'])
 
-    return list(channel_id_set)
+    return channel_id_set
+
+
+def get_existing_id_list():
+    sql_string = 'select distinct channel_id from yt_mst_cnl'
+    c.execute(sql_string)
+
+    uploads_id_list = set()
+    for row in c.fetchall():
+        uploads_id_list.add(row[0])
+
+    return uploads_id_list
 
 
 def get_channel_attr_list(id_list):
@@ -83,10 +98,17 @@ def insert_mysql(attr_list):
     
     conn.commit()
 
+    c.close()
+    conn.close()
+
 
 def main():
     # get videos from youtube data API, and create a list of channels.
-    channel_id_list = get_channel_id_list()
+    trending_channels = get_channel_id_list()
+    existing_channels = get_existing_id_list()
+
+    channel_id_list = list(trending_channels - existing_channels)
+
     print(channel_id_list)
     # get channel attributes from youtube data API.
     channel_attr_list = get_channel_attr_list(channel_id_list)
