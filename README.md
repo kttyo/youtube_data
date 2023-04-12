@@ -11,7 +11,7 @@ This application consists of two parts.
 
 ---
 ## Data pipeline from YouTube API to MySQL tables
-![data process](https://github.com/kttyo/buzzing/blob/d7644ccd0adbaee2ada61a30cd1feef2725770ec/static/Buzzing%20in%20Japan.jpeg)
+![data process](https://github.com/kttyo/youtube_data/blob/5d56108b7c10d1badb9e0c8d3c49a05ebb406c74/images/buzzing_data_flow.jpg)
 ### Tools Used
 - Python, MySQL, YouTube Data API, CaboCha
 
