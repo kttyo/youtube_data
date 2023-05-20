@@ -1,7 +1,14 @@
-from credentials import VENV_PATH, VENV_PYTHON, SCRIPT_PATH
+from credentials import VENV_PATH, VENV_PYTHON, SCRIPT_PATH, DB_HOST, DATABASE, DB_USER, DB_PASSWORD
+import datetime
+import MySQLdb
 import subprocess
 import logging
 logging.basicConfig(level=logging.INFO,format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
+
+
+conn = MySQLdb.connect(host=DB_HOST, db=DATABASE,user=DB_USER,passwd=DB_PASSWORD,charset='utf8mb4')
+c = conn.cursor()
+
 
 # Activate the virtual environment
 result = subprocess.run(
@@ -48,6 +55,25 @@ try:
         logging.error('Error occurred in pfm_vid.py data processing')
         exit()
         
+    try:
+        # Define the argument value
+        today = datetime.datetime.now()
+        filter_date = today - datetime.timedelta(7) # goes back 7 days
+        filter_date_str = filter_date.strftime('%Y%m%d')
+        # Execute the stored procedure
+        c.callproc('yt_analysis_07',[filter_date_str])
+
+        # Retrieve the result set, if any
+        result = c.fetchall()
+        for row in result:
+            print(row)  # Handle the result as needed
+
+    except MySQLdb.Error as error:
+        print(f"Error while executing stored procedure: {error}")
+    
+    c.close()
+    conn.close()
+
 except Exception as e:
     logging.error(e)
 subprocess.run(["deactivate"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
