@@ -33,4 +33,5 @@ BEGIN
         GROUP BY channel_id
     ) T1
     ORDER BY view_count DESC;
+    COMMIT;
 END
